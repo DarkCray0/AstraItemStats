@@ -1,4 +1,5 @@
 name: AstraItemStats
-version: '1.0.0-SNAPSHOT'
+version: ${project.version} (build ${project.BUILD_NUMBER}-${project.BUILD_TYPE})
 main: me.darkcray_.astraItemStats.AstraItemStats
 api-version: '1.21'
+authors: [ DarkCray_ ]
