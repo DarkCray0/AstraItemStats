@@ -1,0 +1,4 @@
+name: AstraItemStats
+version: '1.0.0-SNAPSHOT'
+main: me.darkcray_.astraItemStats.AstraItemStats
+api-version: '1.21'
