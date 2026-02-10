@@ -12,6 +12,7 @@ import me.darkcray_.astraItemStats.stats.events.DamageListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Map;
+import java.util.Objects;
 
 public final class AstraItemStats extends JavaPlugin {
 
@@ -28,9 +29,6 @@ public final class AstraItemStats extends JavaPlugin {
         Msg.init(this);
         this.getConfig().options().copyDefaults();
         saveDefaultConfig();
-
-        getCommand("st").setExecutor(new AstraItemStatsCommand(this));
-        getServer().getPluginManager().registerEvents(new StatsMenuListener(this), this);
 
         saveDefaultConfig();
         loadStats();
@@ -49,6 +47,10 @@ public final class AstraItemStats extends JavaPlugin {
                 new DamageListener(this, stats),
                 this
         );
+
+        AstraItemStatsCommand cmd = new AstraItemStatsCommand(this);
+        getCommand("astraitemstats").setExecutor(cmd);
+        getServer().getPluginManager().registerEvents(new StatsMenuListener(this), this);
 
         getLogger().info("Loaded " + stats.size() + " stat(s).");
     }

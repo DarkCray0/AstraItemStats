@@ -3,3 +3,11 @@ version: ${project.version} (build ${project.BUILD_NUMBER}-${project.BUILD_TYPE}
 main: me.darkcray_.astraItemStats.AstraItemStats
 api-version: '1.21'
 authors: [ DarkCray_ ]
+commands:
+  astraitemstats:
+    description: Main command of the plugin AstraItemStats
+    usage: /astraitemstats <reload|menu>
+    aliases:
+     - ait
+     - st
+    permission: astraitemstats.admin
