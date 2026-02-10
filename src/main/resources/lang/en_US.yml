@@ -1,0 +1,5 @@
+prefix: "&8[&6AstraItemStats&8] &7⏩ &r"
+
+no_permission: "&cYou don't have permission!"
+only_player: "&cThis command is only available to players!"
+config_reloaded: "&aConfiguration and translations have been reloaded!"

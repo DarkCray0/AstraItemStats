@@ -1,0 +1,5 @@
+prefix: "&8[&66AstraItemStats&8] &7⏩ &r"
+
+no_permission: "&cУ вас нет прав!"
+only_player: "&cЭта команда доступна только игрокам!"
+config_reloaded: "&aКонфигурация и переводы перезагружены!"

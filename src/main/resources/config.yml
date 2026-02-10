@@ -1,1 +1,5 @@
-
+Language:
+  # Which language file to use
+  use: en_US
+  # Enable the prefix before each message
+  enable_prefix: true
