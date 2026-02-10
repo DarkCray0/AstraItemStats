@@ -1,0 +1,10 @@
+id: damage_dealt
+
+display: "&bУрона нанесено: &f%value%"
+
+lore:
+  - "&8Статистика предмета"
+  - "%display%"
+
+multiplier: 1.0
+format: "#.0"

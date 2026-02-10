@@ -19,7 +19,7 @@
     </properties>
 
     <build>
-        <finalName>AstraHorse-${project.version}-b${project.BUILD_NUMBER}-${project.BUILD_TYPE}</finalName>
+        <finalName>AstraItemStats-${project.version}-b${project.BUILD_NUMBER}-${project.BUILD_TYPE}</finalName>
         <defaultGoal>clean package</defaultGoal>
 
         <resources>
