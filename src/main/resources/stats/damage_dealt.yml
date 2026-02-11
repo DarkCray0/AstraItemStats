@@ -1,10 +1,6 @@
-id: damage_dealt
+id: on_damage
 
-display: "&bУрона нанесено: &f%value%"
+applicable-to:
+  - "*_sword"
 
-lore:
-  - "&8Статистика предмета"
-  - "%display%"
-
-multiplier: 1.0
-format: "#.0"
+format: "&bУрона нанесено: &f%value%"

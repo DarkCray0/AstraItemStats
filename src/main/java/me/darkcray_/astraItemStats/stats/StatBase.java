@@ -7,16 +7,14 @@ import java.util.List;
 
 public class StatBase {
     public final String id;
-    public final String display;
-    public final List<String> lore;
-    public final double multiplier;
-    public final DecimalFormat format;
+    public final List<String> triggers;
+    public final List<String> applicable_to;
+    public final String format;
 
     public StatBase(FileConfiguration cfg) {
         this.id = cfg.getString("id");
-        this.display = cfg.getString("display");
-        this.lore = cfg.getStringList("lore");
-        this.multiplier = cfg.getDouble("multiplier", 1.0);
-        this.format = new DecimalFormat(cfg.getString("format", "#.0"));
+        this.triggers = cfg.getStringList("triggers");
+        this.applicable_to = cfg.getStringList("applicable-to");
+        this.format = cfg.getString("format");
     }
 }

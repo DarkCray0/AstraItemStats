@@ -1,6 +1,7 @@
 package me.darkcray_.astraItemStats.guis;
 
 import me.darkcray_.astraItemStats.AstraItemStats;
+import me.darkcray_.astraItemStats.stats.LoreUpdater;
 import me.darkcray_.astraItemStats.stats.StatBase;
 import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
@@ -27,16 +28,15 @@ public class StatsMenuListener implements Listener {
         ItemStack clicked = e.getCurrentItem();
         if (clicked == null || !clicked.hasItemMeta()) return;
 
-        String statId = ChatColor.stripColor(clicked.getItemMeta().getDisplayName())
-                .toLowerCase()
-                .split(":")[0]
-                .replace(" ", "_");
 
-        StatBase stat = plugin.getStats().get(statId);
+        String statId = clicked.getPersistentDataContainer().get(new NamespacedKey(plugin, "stat"), PersistentDataType.STRING);
+
+        StatBase stat = AstraItemStats.getStats().get(statId);
         if (stat == null) return;
 
         ItemStack hand = e.getWhoClicked().getInventory().getItemInMainHand();
         ItemMeta meta = hand.getItemMeta();
+        assert stat.id != null;
         NamespacedKey key = new NamespacedKey(plugin, stat.id);
 
         if (meta.getPersistentDataContainer().has(key, PersistentDataType.DOUBLE)) {
@@ -46,7 +46,7 @@ public class StatsMenuListener implements Listener {
         }
 
         hand.setItemMeta(meta);
-        me.example.stattrackers.LoreUpdater.update(hand, plugin, plugin.getStats());
+        LoreUpdater.update(hand, plugin);
 
         StatMenu.open((org.bukkit.entity.Player) e.getWhoClicked(), plugin);
     }

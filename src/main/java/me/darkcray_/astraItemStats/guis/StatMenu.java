@@ -30,7 +30,9 @@ public class StatMenu {
             boolean enabled = handMeta != null &&
                     handMeta.getPersistentDataContainer().has(key, PersistentDataType.DOUBLE);
 
-            meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', stat.display));
+            meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', stat.format));
+
+            meta.getPersistentDataContainer().set(new NamespacedKey(plugin, "stat"), PersistentDataType.STRING, stat.id);
 
             meta.setLore(java.util.List.of(
                     enabled ? "§a✔ Активен" : "§c✖ Не активен",

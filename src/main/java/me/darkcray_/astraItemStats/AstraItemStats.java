@@ -19,7 +19,7 @@ public final class AstraItemStats extends JavaPlugin {
     @Getter
     private static AstraItemStats instance;
     @Getter
-    private Map<String, StatBase> stats;
+    private static Map<String, StatBase> stats;
 
     @Override
     public void onEnable() {
@@ -44,7 +44,7 @@ public final class AstraItemStats extends JavaPlugin {
         }
 
         getServer().getPluginManager().registerEvents(
-                new DamageListener(this, stats),
+                new DamageListener(this),
                 this
         );
 
@@ -59,6 +59,6 @@ public final class AstraItemStats extends JavaPlugin {
     public void onDisable() {}
 
     public void loadStats() {
-        this.stats = StatLoader.loadAll(this);
+        stats = StatLoader.loadAll(this);
     }
 }

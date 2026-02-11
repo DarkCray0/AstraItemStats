@@ -1,5 +1,6 @@
-package me.example.stattrackers;
+package me.darkcray_.astraItemStats.stats;
 
+import me.darkcray_.astraItemStats.AstraItemStats;
 import me.darkcray_.astraItemStats.stats.StatBase;
 import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
@@ -8,6 +9,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.Plugin;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -16,29 +19,29 @@ public class LoreUpdater {
 
     public static void update(
             ItemStack item,
-            Plugin plugin,
-            Map<String, StatBase> stats
+            Plugin plugin
     ) {
         if (item == null || !item.hasItemMeta()) return;
 
         ItemMeta meta = item.getItemMeta();
         List<String> newLore = new ArrayList<>();
 
-        for (StatBase stat : stats.values()) {
+        for (StatBase stat : AstraItemStats.getStats().values()) {
             NamespacedKey key = new NamespacedKey(plugin, stat.id);
 
-            double value = meta.getPersistentDataContainer()
-                    .getOrDefault(key, PersistentDataType.DOUBLE, 0.0);
+            if (!meta.getPersistentDataContainer().has(key, PersistentDataType.DOUBLE)) {
+                meta.setLore(newLore);
+            } else {
+                double value = meta.getPersistentDataContainer()
+                        .getOrDefault(key, PersistentDataType.DOUBLE, 0.0);
 
-            String display = ChatColor.translateAlternateColorCodes(
-                    '&',
-                    stat.display.replace("%value%", stat.format.format(value))
-            );
+                BigDecimal bd = new BigDecimal(Double.toString(value));
+                bd = bd.setScale(1, RoundingMode.HALF_UP);
+                double roundedValue = bd.doubleValue();
 
-            for (String line : stat.lore) {
                 newLore.add(ChatColor.translateAlternateColorCodes(
                         '&',
-                        line.replace("%display%", display)
+                        stat.format.replace("%value%", String.valueOf(roundedValue))
                 ));
             }
         }

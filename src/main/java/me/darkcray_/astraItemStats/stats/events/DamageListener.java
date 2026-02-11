@@ -1,5 +1,7 @@
 package me.darkcray_.astraItemStats.stats.events;
 
+import me.darkcray_.astraItemStats.AstraItemStats;
+import me.darkcray_.astraItemStats.stats.LoreUpdater;
 import me.darkcray_.astraItemStats.stats.StatBase;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
@@ -16,11 +18,9 @@ import java.util.Map;
 public class DamageListener implements Listener {
 
     private final Plugin plugin;
-    private final Map<String, StatBase> stats;
 
-    public DamageListener(Plugin plugin, Map<String, StatBase> stats) {
+    public DamageListener(Plugin plugin) {
         this.plugin = plugin;
-        this.stats = stats;
     }
 
     @EventHandler
@@ -30,7 +30,7 @@ public class DamageListener implements Listener {
         ItemStack item = p.getInventory().getItemInMainHand();
         if (!item.hasItemMeta()) return;
 
-        StatBase stat = stats.get("damage_dealt");
+        StatBase stat = AstraItemStats.getStats().get("on_damage");
         if (stat == null) return;
 
         ItemMeta meta = item.getItemMeta();
@@ -43,10 +43,10 @@ public class DamageListener implements Listener {
         meta.getPersistentDataContainer().set(
                 key,
                 PersistentDataType.DOUBLE,
-                current + (e.getFinalDamage() * stat.multiplier)
+                current + (e.getFinalDamage())
         );
 
         item.setItemMeta(meta);
-        me.example.stattrackers.LoreUpdater.update(item, plugin, stats);
+        LoreUpdater.update(item, plugin);
     }
 }
