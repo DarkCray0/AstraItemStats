@@ -3,3 +3,10 @@ prefix: "&8[&6AstraItemStats&8] &7⏩ &r"
 no_permission: "&cYou don't have permission!"
 only_player: "&cThis command is only available to players!"
 config_reloaded: "&aConfiguration and translations have been reloaded!"
+
+menu:
+  title: "------ &8AstraItemStats -------"
+  active: "&a✔ Active"
+  inactive: "§c✖ Inactive"
+  switch: "&7Click — to switch"
+  not_applicable: "&c✖ This tracker can not be added to this item."

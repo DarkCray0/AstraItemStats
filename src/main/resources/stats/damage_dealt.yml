@@ -3,4 +3,4 @@ id: on_damage
 applicable-to:
   - "*_sword"
 
-format: "&bУрона нанесено: &f%value%"
+format: "&bDamage Dealt: &f%value%"

@@ -4,6 +4,7 @@ import me.darkcray_.astraItemStats.AstraItemStats;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 
@@ -46,9 +47,10 @@ public class Msg {
         p.sendMessage(ChatColor.translateAlternateColorCodes('&', msg));
     }
 
+    @NotNull
     public static String get(String key, Boolean remove_prefix) {
         String msg = LANG.getString(key, "");
-        if (msg == null || msg.equals("-")) return null;
+        if (msg == null || msg.equals("-")) return "Translation not found!";
         if (AstraItemStats.getInstance().getConfig().getBoolean("Language.enable_prefix", true)) {
             if (!remove_prefix) {
                 msg = LANG.getString("prefix", "") + msg;

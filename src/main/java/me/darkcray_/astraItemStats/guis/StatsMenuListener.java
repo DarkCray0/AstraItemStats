@@ -1,6 +1,7 @@
 package me.darkcray_.astraItemStats.guis;
 
 import me.darkcray_.astraItemStats.AstraItemStats;
+import me.darkcray_.astraItemStats.lib.Msg;
 import me.darkcray_.astraItemStats.stats.LoreUpdater;
 import me.darkcray_.astraItemStats.stats.StatBase;
 import org.bukkit.ChatColor;
@@ -22,7 +23,7 @@ public class StatsMenuListener implements Listener {
 
     @EventHandler
     public void onClick(InventoryClickEvent e) {
-        if (!e.getView().getTitle().equals(StatMenu.TITLE)) return;
+        if (!e.getView().getTitle().equals(Msg.get("menu.title", true))) return;
         e.setCancelled(true);
 
         ItemStack clicked = e.getCurrentItem();

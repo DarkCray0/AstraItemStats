@@ -1,6 +1,7 @@
 package me.darkcray_.astraItemStats.guis;
 
 import me.darkcray_.astraItemStats.AstraItemStats;
+import me.darkcray_.astraItemStats.lib.Msg;
 import me.darkcray_.astraItemStats.stats.StatBase;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -12,12 +13,12 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.entity.Player;
 import org.bukkit.Material;
 
+import java.util.List;
+
 public class StatMenu {
 
-    public static final String TITLE = "§8Stat Trackers";
-
     public static void open(Player player, AstraItemStats plugin) {
-        Inventory inv = Bukkit.createInventory(null, 27, TITLE);
+        Inventory inv = Bukkit.createInventory(null, 27, Msg.get("menu.title", true));
 
         ItemStack hand = player.getInventory().getItemInMainHand();
         ItemMeta handMeta = hand.getItemMeta();
@@ -32,12 +33,18 @@ public class StatMenu {
 
             meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', stat.format));
 
-            meta.getPersistentDataContainer().set(new NamespacedKey(plugin, "stat"), PersistentDataType.STRING, stat.id);
+            if (isApplicable(hand, stat.applicable_to)) {
+                meta.getPersistentDataContainer().set(new NamespacedKey(plugin, "stat"), PersistentDataType.STRING, stat.id);
 
-            meta.setLore(java.util.List.of(
-                    enabled ? "§a✔ Активен" : "§c✖ Не активен",
-                    "§7Клик — переключить"
-            ));
+                meta.setLore(java.util.List.of(
+                        enabled ? Msg.get("menu.active", true) : Msg.get("menu.inactive", true),
+                        Msg.get("menu.switch", true)
+                ));
+            } else {
+                meta.setLore(java.util.List.of(
+                        Msg.get("menu.not_applicable", true)
+                ));
+            }
 
             item.setItemMeta(meta);
             inv.addItem(item);
@@ -45,4 +52,23 @@ public class StatMenu {
 
         player.openInventory(inv);
     }
+
+    public static boolean isApplicable(ItemStack item, List<String> applicable_to) {
+        if (item == null || item.getType() == Material.AIR) return false;
+        if (applicable_to == null || applicable_to.isEmpty()) return true;
+
+        String material = item.getType().name().toLowerCase();
+
+        for (String rule : applicable_to) {
+            String regex = rule
+                    .toLowerCase()
+                    .replace("*", ".*");
+
+            if (material.matches(regex)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

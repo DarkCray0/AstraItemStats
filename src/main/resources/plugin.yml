@@ -6,7 +6,7 @@ authors: [ DarkCray_ ]
 commands:
   astraitemstats:
     description: Main command of the plugin AstraItemStats
-    usage: /astraitemstats <reload|menu>
+    usage: §6Use /astraitemstats <reload|menu>
     aliases:
      - ait
      - st

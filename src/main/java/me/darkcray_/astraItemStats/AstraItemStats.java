@@ -9,8 +9,15 @@ import me.darkcray_.astraItemStats.lib.Msg;
 import me.darkcray_.astraItemStats.stats.StatBase;
 import me.darkcray_.astraItemStats.stats.StatLoader;
 import me.darkcray_.astraItemStats.stats.events.DamageListener;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.Objects;
 
@@ -31,7 +38,6 @@ public final class AstraItemStats extends JavaPlugin {
         saveDefaultConfig();
 
         saveDefaultConfig();
-        loadStats();
 
         ConfigSyncUtil configsyncUtil = new ConfigSyncUtil(this);
 
@@ -43,22 +49,60 @@ public final class AstraItemStats extends JavaPlugin {
             e.printStackTrace();
         }
 
-        getServer().getPluginManager().registerEvents(
-                new DamageListener(this),
-                this
-        );
+        getServer().getPluginManager().registerEvents(new DamageListener(this), this);
+        loadStatFile("damage_dealt.yml");
 
         AstraItemStatsCommand cmd = new AstraItemStatsCommand(this);
         getCommand("astraitemstats").setExecutor(cmd);
+        getCommand("astraitemstats").setTabCompleter(cmd);
         getServer().getPluginManager().registerEvents(new StatsMenuListener(this), this);
 
-        getLogger().info("Loaded " + stats.size() + " stat(s).");
+        sendStartInfo();
+        loadStats();
     }
+
+
+    public void sendStartInfo() {
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        String formatted = now.format(formatter);
+
+        Bukkit.getConsoleSender().sendMessage("§3> [AstraItemStats] §5+--------------------------+§r");
+        Bukkit.getConsoleSender().sendMessage("§3> [AstraItemStats] §3       AstraItemStats§r");
+        Bukkit.getConsoleSender().sendMessage("§3> [AstraItemStats] §8Version: §r" + getPluginMeta().getVersion());
+        Bukkit.getConsoleSender().sendMessage("§3> [AstraItemStats] §5+--------------------------+§r");
+
+
+        Bukkit.getConsoleSender().sendMessage("§3> [AstraItemStats] §rFully loaded at: " + formatted);
+    }
+
+    public static void loadStatFile(String fileName) {
+
+        File outFile = new File(getInstance().getDataFolder(), "stats/" + fileName);
+        if (outFile.exists()) return;
+
+        outFile.getParentFile().mkdirs();
+
+        try (InputStream in = getInstance().getResource("stats/" + fileName)) {
+
+            if (in == null) {
+                return;
+            }
+
+            Files.copy(in, outFile.toPath());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @Override
     public void onDisable() {}
 
     public void loadStats() {
         stats = StatLoader.loadAll(this);
+        Bukkit.getConsoleSender().sendMessage("§3> [AstraItemStats] §rReloading...!");
+        Bukkit.getConsoleSender().sendMessage("§3> [AstraItemStats] §rSuccessfully loaded " + stats.size() + " stats!");
     }
 }

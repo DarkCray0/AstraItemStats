@@ -3,3 +3,10 @@ prefix: "&8[&66AstraItemStats&8] &7⏩ &r"
 no_permission: "&cУ вас нет прав!"
 only_player: "&cЭта команда доступна только игрокам!"
 config_reloaded: "&aКонфигурация и переводы перезагружены!"
+
+menu:
+  title: "------ &8AstraItemStats -------"
+  active: "&a✔ Активен"
+  inactive: "§c✖ Не активен"
+  switch: "&7Клик — переключить"
+  not_applicable: "&c✖ Этот трекер нельзя наложить на данный предмет."
