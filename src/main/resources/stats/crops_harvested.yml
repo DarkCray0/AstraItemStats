@@ -1,0 +1,6 @@
+id: crops_harvested
+
+applicable-to:
+  - "*_hoe"
+
+format: "&aCrops Harvested: &f%value%"

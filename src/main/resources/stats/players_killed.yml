@@ -1,0 +1,7 @@
+id: player_kills
+
+applicable-to:
+  - "*_sword"
+  - "*_axe"
+
+format: "&cPlayers Killed: &f%value%"

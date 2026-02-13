@@ -1,0 +1,7 @@
+id: arrows_shot
+
+applicable-to:
+  - "bow"
+  - "crossbow"
+
+format: "&eArrows Shot: &f%value%"

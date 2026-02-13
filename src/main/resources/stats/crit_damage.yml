@@ -1,0 +1,7 @@
+id: on_crit_damage
+
+applicable-to:
+  - "*_sword"
+  - "*_axe"
+
+format: "&dCritical Damage: &f%value%"

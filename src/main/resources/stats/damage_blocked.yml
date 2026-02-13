@@ -1,0 +1,6 @@
+id: damage_blocked
+
+applicable-to:
+  - "shield"
+
+format: "&aDamage Blocked: &f%value%"

@@ -1,0 +1,7 @@
+id: bow_damage
+
+applicable-to:
+  - "bow"
+  - "crossbow"
+
+format: "&eBow Damage: &f%value%"

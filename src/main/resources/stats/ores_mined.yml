@@ -1,0 +1,6 @@
+id: ores_mined
+
+applicable-to:
+  - "*_pickaxe"
+  -
+format: "&bOres Mined: &f%value%"

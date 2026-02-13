@@ -8,7 +8,10 @@ import me.darkcray_.astraItemStats.lib.Metrics;
 import me.darkcray_.astraItemStats.lib.Msg;
 import me.darkcray_.astraItemStats.stats.StatBase;
 import me.darkcray_.astraItemStats.stats.StatLoader;
-import me.darkcray_.astraItemStats.stats.events.DamageListener;
+import me.darkcray_.astraItemStats.stats.events.*;
+import me.darkcray_.astraItemStats.stats.events.blocks.*;
+import me.darkcray_.astraItemStats.stats.events.damage.*;
+import me.darkcray_.astraItemStats.stats.events.kills.*;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -19,7 +22,6 @@ import java.nio.file.Files;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
-import java.util.Objects;
 
 public final class AstraItemStats extends JavaPlugin {
 
@@ -27,6 +29,11 @@ public final class AstraItemStats extends JavaPlugin {
     private static AstraItemStats instance;
     @Getter
     private static Map<String, StatBase> stats;
+
+    // TODO:
+    // - Оптимизировать ивенты
+    // - Добавить новые ивенты
+    // - onHarvest Растения должны вырости
 
     @Override
     public void onEnable() {
@@ -49,8 +56,32 @@ public final class AstraItemStats extends JavaPlugin {
             e.printStackTrace();
         }
 
-        getServer().getPluginManager().registerEvents(new DamageListener(this), this);
+        getServer().getPluginManager().registerEvents(new DamageListener(), this);
         loadStatFile("damage_dealt.yml");
+        getServer().getPluginManager().registerEvents(new BowDamageListener(), this);
+        loadStatFile("bow_damage.yml");
+        getServer().getPluginManager().registerEvents(new PlayerKillListener(), this);
+        loadStatFile("player_kills.yml");
+        getServer().getPluginManager().registerEvents(new MobKillListener(), this);
+        loadStatFile("mob_kills.yml");
+        getServer().getPluginManager().registerEvents(new HitsDealtListener(), this);
+        loadStatFile("hits_dealt.yml");
+        getServer().getPluginManager().registerEvents(new DamageTakenListener(), this);
+        loadStatFile("damage_taken.yml");
+        getServer().getPluginManager().registerEvents(new DamageBlockedListener(), this);
+        loadStatFile("damage_blocked.yml");
+        getServer().getPluginManager().registerEvents(new CritListener(), this);
+        loadStatFile("crit_damage.yml");
+        getServer().getPluginManager().registerEvents(new BowShootListener(), this);
+        loadStatFile("arrows_shot.yml");
+        getServer().getPluginManager().registerEvents(new OresMinedListener(), this);
+        loadStatFile("ores_mined.yml");
+        getServer().getPluginManager().registerEvents(new CropsHarvestedListener(), this);
+        loadStatFile("crops_harvested.yml");
+        getServer().getPluginManager().registerEvents(new BlockBreakListener(), this);
+        loadStatFile("blocks_broken.yml");
+
+
 
         AstraItemStatsCommand cmd = new AstraItemStatsCommand(this);
         getCommand("astraitemstats").setExecutor(cmd);

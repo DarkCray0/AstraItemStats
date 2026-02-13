@@ -1,0 +1,8 @@
+id: blocks_broken
+
+applicable-to:
+  - "*_pickaxe"
+  - "*_axe"
+  - "*_shovel"
+
+format: "&7Blocks Broken: &f%value%"

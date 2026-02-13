@@ -1,0 +1,7 @@
+id: hits_dealt
+
+applicable-to:
+  - "*_sword"
+  - "*_axe"
+
+format: "&bHits Dealt: &f%value%"

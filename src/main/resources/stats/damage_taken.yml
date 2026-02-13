@@ -1,0 +1,9 @@
+id: damage_taken
+
+applicable-to:
+  - "*_helmet"
+  - "*_chestplate"
+  - "*_leggings"
+  - "*_boots"
+  -
+format: "&6Damage Taken: &f%value%"
