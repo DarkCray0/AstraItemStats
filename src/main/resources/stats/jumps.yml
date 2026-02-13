@@ -1,0 +1,6 @@
+id: jumps
+
+applicable-to:
+  - "*_boots"
+
+format: "&fJumped: &f%value%"

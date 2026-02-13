@@ -1,0 +1,6 @@
+id: distance_walked
+
+applicable-to:
+  - "*_boots"
+
+format: "&aWalked Distance: &f%value% m"

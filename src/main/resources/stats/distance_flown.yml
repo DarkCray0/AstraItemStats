@@ -1,0 +1,6 @@
+id: distance_flown
+
+applicable-to:
+  - "elytra"
+
+format: "&bFlown Distance: &f%value% m"

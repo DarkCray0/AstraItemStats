@@ -1,0 +1,6 @@
+id: distance_sprinted
+
+applicable-to:
+  - "*_boots"
+
+format: "&eSprinted Distance: &f%value% m"

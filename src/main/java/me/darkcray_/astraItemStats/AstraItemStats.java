@@ -12,6 +12,7 @@ import me.darkcray_.astraItemStats.stats.events.*;
 import me.darkcray_.astraItemStats.stats.events.blocks.*;
 import me.darkcray_.astraItemStats.stats.events.damage.*;
 import me.darkcray_.astraItemStats.stats.events.kills.*;
+import me.darkcray_.astraItemStats.stats.events.move.*;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -61,9 +62,9 @@ public final class AstraItemStats extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new BowDamageListener(), this);
         loadStatFile("bow_damage.yml");
         getServer().getPluginManager().registerEvents(new PlayerKillListener(), this);
-        loadStatFile("player_kills.yml");
+        loadStatFile("player_killed.yml");
         getServer().getPluginManager().registerEvents(new MobKillListener(), this);
-        loadStatFile("mob_kills.yml");
+        loadStatFile("mob_killed.yml");
         getServer().getPluginManager().registerEvents(new HitsDealtListener(), this);
         loadStatFile("hits_dealt.yml");
         getServer().getPluginManager().registerEvents(new DamageTakenListener(), this);
@@ -80,6 +81,14 @@ public final class AstraItemStats extends JavaPlugin {
         loadStatFile("crops_harvested.yml");
         getServer().getPluginManager().registerEvents(new BlockBreakListener(), this);
         loadStatFile("blocks_broken.yml");
+        getServer().getPluginManager().registerEvents(new DistanceFlownListener(), this);
+        loadStatFile("distance_flown.yml");
+        getServer().getPluginManager().registerEvents(new DistanceSprintedListener(), this);
+        loadStatFile("distance_sprinted.yml");
+        getServer().getPluginManager().registerEvents(new DistanceWalkedListener(), this);
+        loadStatFile("distance_walked.yml");
+        getServer().getPluginManager().registerEvents(new JumpListener(), this);
+        loadStatFile("jumps.yml");
 
 
 
