@@ -34,7 +34,6 @@ public final class AstraItemStats extends JavaPlugin {
     // TODO:
     // - Оптимизировать ивенты
     // - Добавить новые ивенты
-    // - onHarvest Растения должны вырости
 
     @Override
     public void onEnable() {
