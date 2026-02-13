@@ -34,6 +34,7 @@ public final class AstraItemStats extends JavaPlugin {
     // TODO:
     // - Оптимизировать ивенты
     // - Добавить новые ивенты
+    // - Прыжки криво работают
 
     @Override
     public void onEnable() {
@@ -61,9 +62,9 @@ public final class AstraItemStats extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new BowDamageListener(), this);
         loadStatFile("bow_damage.yml");
         getServer().getPluginManager().registerEvents(new PlayerKillListener(), this);
-        loadStatFile("player_killed.yml");
+        loadStatFile("players_killed.yml");
         getServer().getPluginManager().registerEvents(new MobKillListener(), this);
-        loadStatFile("mob_killed.yml");
+        loadStatFile("mobs_killed.yml");
         getServer().getPluginManager().registerEvents(new HitsDealtListener(), this);
         loadStatFile("hits_dealt.yml");
         getServer().getPluginManager().registerEvents(new DamageTakenListener(), this);
@@ -86,8 +87,8 @@ public final class AstraItemStats extends JavaPlugin {
         loadStatFile("distance_sprinted.yml");
         getServer().getPluginManager().registerEvents(new DistanceWalkedListener(), this);
         loadStatFile("distance_walked.yml");
-        getServer().getPluginManager().registerEvents(new JumpListener(), this);
-        loadStatFile("jumps.yml");
+        //getServer().getPluginManager().registerEvents(new JumpListener(), this);
+        //loadStatFile("jumps.yml");
 
 
 
