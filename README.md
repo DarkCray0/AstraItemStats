@@ -13,4 +13,4 @@ Each item can store its own stats - such as **damage dealt, distance walked, jum
 - 🛠 Developer-friendly, event-based system
 
 ## 🎯 Goal
-Designed to be simple for players and powerful for developers, allowing easy creation of custom item statistics without modifying core code.
+Designed to be simple for players and powerful for developers, allowing easy creation of custom item statistics without modifying core code
