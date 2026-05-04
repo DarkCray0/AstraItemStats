@@ -1,7 +1,7 @@
 name: AstraItemStats
 version: ${project.version} (build ${project.BUILD_NUMBER}-${project.BUILD_TYPE})
 main: me.darkcray_.astraItemStats.AstraItemStats
-api-version: '1.21'
+api-version: '26.1.2'
 authors: [ DarkCray_ ]
 commands:
   astraitemstats:
