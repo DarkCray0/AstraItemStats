@@ -95,7 +95,6 @@ public final class AstraItemStats extends JavaPlugin {
         loadStatFile("experience_collected.yml");
         getServer().getPluginManager().registerEvents(new ChatMessagesListener(), this);
         loadStatFile("chat_messages.yml");
-        getServer().getPluginManager().registerEvents(new InventoryOpenLoreRefreshListener(), this);
         //getServer().getPluginManager().registerEvents(new JumpListener(), this);
         //loadStatFile("jumps.yml");
 
