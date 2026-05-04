@@ -4,7 +4,6 @@ import me.darkcray_.astraItemStats.AstraItemStats;
 import me.darkcray_.astraItemStats.stats.StatBase;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
@@ -22,12 +21,30 @@ public class StatApply {
 
         NamespacedKey key = new NamespacedKey(AstraItemStats.getInstance(), stat.id);
 
-        applyToItem(player.getInventory().getItemInMainHand(), key, amount, AstraItemStats.getInstance());
+        applyToItem(
+                player.getInventory().getItemInMainHand(),
+                key,
+                amount,
+                AstraItemStats.getInstance(),
+                false
+        );
 
-        applyToItem(player.getInventory().getItemInOffHand(), key, amount, AstraItemStats.getInstance());
+        applyToItem(
+                player.getInventory().getItemInOffHand(),
+                key,
+                amount,
+                AstraItemStats.getInstance(),
+                false
+        );
 
         for (ItemStack armor : player.getInventory().getArmorContents()) {
-            applyToItem(armor, key, amount, AstraItemStats.getInstance());
+            applyToItem(
+                    armor,
+                    key,
+                    amount,
+                    AstraItemStats.getInstance(),
+                    true
+            );
         }
     }
 
@@ -35,7 +52,8 @@ public class StatApply {
             ItemStack item,
             NamespacedKey key,
             double amount,
-            AstraItemStats plugin
+            AstraItemStats plugin,
+            boolean updateLore
     ) {
         if (item == null || !item.hasItemMeta()) return;
 
@@ -54,6 +72,8 @@ public class StatApply {
         );
 
         item.setItemMeta(meta);
-        LoreUpdater.update(item, plugin);
+        if (updateLore) {
+            LoreUpdater.update(item, plugin);
+        }
     }
 }
