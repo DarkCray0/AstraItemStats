@@ -1,0 +1,6 @@
+id: chat_messages
+
+applicable-to:
+  - "*"
+
+format: "&dChat Messages: &f%value%"

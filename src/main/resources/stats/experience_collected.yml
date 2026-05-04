@@ -1,0 +1,6 @@
+id: experience_collected
+
+applicable-to:
+  - "*"
+
+format: "&aExperience Collected: &f%value%"

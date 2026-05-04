@@ -1,0 +1,6 @@
+id: fish_caught
+
+applicable-to:
+  - "fishing_rod"
+
+format: "&bFish Caught: &f%value%"

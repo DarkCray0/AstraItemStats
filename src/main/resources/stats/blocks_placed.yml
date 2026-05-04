@@ -1,0 +1,6 @@
+id: blocks_placed
+
+applicable-to:
+  - "*"
+
+format: "&7Blocks Placed: &f%value%"

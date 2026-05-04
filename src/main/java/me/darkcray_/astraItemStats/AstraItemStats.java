@@ -81,12 +81,20 @@ public final class AstraItemStats extends JavaPlugin {
         loadStatFile("crops_harvested.yml");
         getServer().getPluginManager().registerEvents(new BlockBreakListener(), this);
         loadStatFile("blocks_broken.yml");
+        getServer().getPluginManager().registerEvents(new BlocksPlacedListener(), this);
+        loadStatFile("blocks_placed.yml");
         getServer().getPluginManager().registerEvents(new DistanceFlownListener(), this);
         loadStatFile("distance_flown.yml");
         getServer().getPluginManager().registerEvents(new DistanceSprintedListener(), this);
         loadStatFile("distance_sprinted.yml");
         getServer().getPluginManager().registerEvents(new DistanceWalkedListener(), this);
         loadStatFile("distance_walked.yml");
+        getServer().getPluginManager().registerEvents(new FishCaughtListener(), this);
+        loadStatFile("fish_caught.yml");
+        getServer().getPluginManager().registerEvents(new ExperienceCollectedListener(), this);
+        loadStatFile("experience_collected.yml");
+        getServer().getPluginManager().registerEvents(new ChatMessagesListener(), this);
+        loadStatFile("chat_messages.yml");
         //getServer().getPluginManager().registerEvents(new JumpListener(), this);
         //loadStatFile("jumps.yml");
 
